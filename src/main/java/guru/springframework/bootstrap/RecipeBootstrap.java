@@ -27,11 +27,11 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         this.unitOfMeasureRepository = unitOfMeasureRepository;
     }
 
+
     @Override
     @Transactional
     public void onApplicationEvent(ContextRefreshedEvent event) {
         recipeRepository.saveAll(getRecipes());
-        System.out.println("Loading Bootstrap Data");
     }
 
     private List<Recipe> getRecipes() {
@@ -39,6 +39,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         List<Recipe> recipes = new ArrayList<>(2);
 
         //get UOMs
+        //UnitOfMeasure uom = new UnitOfMeasure();
         Optional<UnitOfMeasure> eachUomOptional = unitOfMeasureRepository.findByDescription("Each");
 
         if(!eachUomOptional.isPresent()){
@@ -98,7 +99,6 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 
         Category americanCategory = americanCategoryOptional.get();
         Category mexicanCategory = mexicanCategoryOptional.get();
-        System.out.println("======== cat for american: " + americanCategory.getDescription());
 
         //Yummy Guac
         Recipe guacRecipe = new Recipe();
@@ -169,4 +169,5 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         recipes.add(tacosRecipe);
         return recipes;
     }
+
 }
