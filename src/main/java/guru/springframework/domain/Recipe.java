@@ -131,12 +131,11 @@ public class Recipe {
     }
 
     public void setNotes(Notes notes) {
+        notes.setRecipe(this);
         this.notes = notes;
     }
 
-    public Set<Category> getCategories() {
-        return categories;
-    }
+    public Set<Category> getCategories() { return categories; }
 
     public void setCategories(Set<Category> categories) {
         this.categories = categories;
