@@ -14,19 +14,14 @@ jobs:
             
     steps:
       - checkout
-      
-      # Download and cache dependencies
       - restore_cache:
-        keys:
-            - v1-dependencies-{{ checksum "pom.xml" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-      
-      - run: mvn dependency:go-offline
-      
+          keys:
+            - v1-dependencies-{{ checksum "pom.xml" }} # appends cache key with a hash of pom.xml file
+            - v1-dependencies- # fallback in case previous cache key is not found
+      - run: ./mvnw -Dmaven.test.skip=true package
       - save_cache:
-            paths:
+          paths:
             - ~/.m2
-            key: v1-dependencies-{{ checksum "pom.xml" }}
+          key: v1-dependencies-{{ checksum "pom.xml" }}
 
-      -run: mvn integration-test
+      # -run: mvn integration-test
