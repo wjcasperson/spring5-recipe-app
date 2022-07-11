@@ -1,3 +1,4 @@
+# using version 2 of ceci builds
 version: 2
 jobs:
   build:
