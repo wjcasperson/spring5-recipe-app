@@ -1,1 +1,1 @@
-web: java -cp target/classes/;target/dependency/* -jar target/spring5-recipe-app-0.0.1-SNAPSHOT.jar
+web: java -cp target/classes/ -jar target/spring5-recipe-app-0.0.1-SNAPSHOT.jar
